@@ -6,5 +6,5 @@ export class LocationModel{
     public city: String;
     public country: String;
     public boardId: String;
-    public locations: WeatherPointModel[];
+    public weatherPoints: WeatherPointModel[];
 }

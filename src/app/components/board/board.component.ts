@@ -11,20 +11,24 @@ import { Observable } from 'rxjs';
 })
 export class BoardComponent implements OnInit {
 
-  private boards: BoardModel[];
+  private userBoards: BoardModel[];
   private queryResult:QueryResultModel;
 
-  constructor(private boardService:BoardService) { }
+  constructor(private boardService:BoardService) {
+
+    this.getBoardsByUser("1");
+
+   }
 
   ngOnInit() {
-    this.getBoardsByUser("1");
+   
   }
 
   private getBoardsByUser(userId:string):void{
     this.boardService.getBoardsByUser(userId).subscribe(res => {
       this.queryResult = res as QueryResultModel;
-      this.boards = this.queryResult.queryResponse;
-      console.log(this.boards);
+      this.userBoards = this.queryResult.queryResponse;
+      console.log(this.userBoards);
     })
   }
 

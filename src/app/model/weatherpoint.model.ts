@@ -1,7 +1,8 @@
 
 export class WeatherPointModel{
-    public id: Number;
-    public date: Number;
-    public description: String;
-    public temp: Number;
+    public id: string;
+    public date: string;
+    public description: string;
+    public temp: string;
+    public code: string;
 }
