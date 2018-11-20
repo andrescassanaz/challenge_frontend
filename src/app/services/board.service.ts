@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BoardModel } from '../model/board.model';
 import { QueryResultModel } from '../model/queryresult.model';
-import { HttpClient } from "@angular/common/http"
+import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
 
 

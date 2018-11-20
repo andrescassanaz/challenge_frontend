@@ -8,6 +8,9 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { BoardComponent } from './components/board/board.component';
 import { HomeComponent } from './components/home/home.component';
 import { APP_ROUTING } from './app.routes';
+import { BoardCrudComponent } from './components/crud/board-crud/board-crud.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -16,12 +19,14 @@ import { APP_ROUTING } from './app.routes';
     FooterComponent,
     NavbarComponent,
     BoardComponent,
-    HomeComponent
+    HomeComponent,
+    BoardCrudComponent
   ],
   imports: [
     BrowserModule,
     APP_ROUTING,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

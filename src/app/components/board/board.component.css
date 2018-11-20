@@ -24,3 +24,7 @@
 .divTableBody {
 	display: table-row-group;
 }
+
+.list-group-item:last-child{
+    margin: 2px;
+}

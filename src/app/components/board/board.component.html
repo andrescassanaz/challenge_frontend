@@ -2,7 +2,7 @@
 
 
   <div class="card-columns">
-    <div *ngFor="let board of userBoards" class="card">
+    <div *ngFor="let board of userBoards" class="card text-white bg-secondary mb-3">
       <div class="card-body">
         <h5 class="card-title">{{board.name}}</h5>
         <div class="card-text">
@@ -10,29 +10,21 @@
 
             <li class="list-group-item d-flex justify-content-between align-items-center">
 
-
               <div class="divTable">
                 <div class="divTableBody">
                   <div class="divTableRow">
                     <div class="divTableCell text-left font-weight-bold">{{location.city}}<small>, {{location.country}}</small></div>
-                    <div class="divTableCell text-right"> <img src="http://l.yimg.com/a/i/us/we/52/{{location.weatherPoints[0].code}}.gif"
+                    <div class="divTableCell text-right"> <img src="http://l.yimg.com/a/i/us/we/52/{{location.weatherPoints[location.weatherPoints.length-1].code}}.gif"
                         alt=""></div>
                   </div>
                   <div class="divTableRow">
                     <div class="divTableCell text-left">
-                      <h4>{{location.weatherPoints[0].temp}} C°</h4>
+                      <h4>{{location.weatherPoints[location.weatherPoints.length-1].temp}} C°</h4>
                     </div>
-                    <div class="divTableCell text-right">{{location.weatherPoints[0].description}}</div>
+                    <div class="divTableCell text-right">{{location.weatherPoints[location.weatherPoints.length-1].description}}</div>
                   </div>
                 </div>
               </div>
-
-
-
-
-
-
-
             </li>
 
           </ul>
