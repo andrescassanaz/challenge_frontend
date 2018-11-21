@@ -16,7 +16,7 @@ export class BoardComponent implements OnInit {
 
   constructor(private boardService:BoardService) {
 
-    this.getBoardsByUser("1");
+    this.getBoardsByUserWithUpdatedWeather("1");
 
    }
 
@@ -24,11 +24,10 @@ export class BoardComponent implements OnInit {
    
   }
 
-  private getBoardsByUser(userId:string):void{
-    this.boardService.getBoardsByUser(userId).subscribe(res => {
+  private getBoardsByUserWithUpdatedWeather(userId:string):void{
+    this.boardService.getBoardsByUserWithUpdatedWeather(userId).subscribe(res => {
       this.queryResult = res as QueryResultModel;
       this.userBoards = this.queryResult.queryResponse;
-      console.log(this.userBoards);
     })
   }
 

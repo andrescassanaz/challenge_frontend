@@ -10,6 +10,8 @@ import { HomeComponent } from './components/home/home.component';
 import { APP_ROUTING } from './app.routes';
 import { BoardCrudComponent } from './components/crud/board-crud/board-crud.component';
 import { FormsModule } from '@angular/forms';
+import { BoardCrudTableComponent } from './components/crud/board-crud/board-crud-table/board-crud-table.component';
+import { ManageComponent } from './components/manage/manage.component';
 
 
 
@@ -20,7 +22,9 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     BoardComponent,
     HomeComponent,
-    BoardCrudComponent
+    BoardCrudComponent,
+    BoardCrudTableComponent,
+    ManageComponent
   ],
   imports: [
     BrowserModule,

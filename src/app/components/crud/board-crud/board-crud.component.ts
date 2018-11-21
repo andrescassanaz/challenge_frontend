@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BoardCrudService } from '../../../services/board-crud.service';
 import { RestResponseModel } from '../../../model/restresponse.model';
+import { BoardService } from '../../../services/board.service';
 
 @Component({
   selector: 'app-board-crud',
@@ -14,11 +14,11 @@ export class BoardCrudComponent{
   showSuccessMessage:boolean = false;
   showErrorMessage:boolean  = false;
 
-  constructor(private boardCrudService: BoardCrudService) { }
+  constructor(private boardService: BoardService) { }
 
 
   public addBoard(): void {
-    this.boardCrudService.addBoard(this.boardName, "1").subscribe(res => {
+    this.boardService.addBoard(this.boardName, "1").subscribe(res => {
       this.restResponse = res as RestResponseModel;
       if (this.restResponse.responseCode == '200') {
         this.boardName = "";
