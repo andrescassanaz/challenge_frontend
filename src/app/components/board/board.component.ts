@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent{
 
   private userBoards: BoardModel[];
   private queryResult:QueryResultModel;
@@ -19,10 +19,6 @@ export class BoardComponent implements OnInit {
     this.getBoardsByUserWithUpdatedWeather("1");
 
    }
-
-  ngOnInit() {
-   
-  }
 
   private getBoardsByUserWithUpdatedWeather(userId:string):void{
     this.boardService.getBoardsByUserWithUpdatedWeather(userId).subscribe(res => {

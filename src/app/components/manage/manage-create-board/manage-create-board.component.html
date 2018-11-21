@@ -1,0 +1,10 @@
+<form (submit)="addBoard()">
+  <div class="form-group">
+    <label for="boardName">Board name:</label>
+    <input [(ngModel)]="boardName" name="boardName" type="text" class="form-control" id="boardName">
+  </div>
+  <button type="submit" class="btn btn-primary">Create</button>
+</form>
+<br>
+<div *ngIf="showSuccessMessage" class="alert alert-success" role="alert">Board created!</div>
+<div *ngIf="showErrorMessage" class="alert alert-danger" role="alert">Error!: {{restResponse.message}}</div>

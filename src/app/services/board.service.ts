@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BoardModel } from '../model/board.model';
 import { QueryResultModel } from '../model/queryresult.model';
 import { RestResponseModel } from '../model/restresponse.model';
 import { HttpClient } from "@angular/common/http";

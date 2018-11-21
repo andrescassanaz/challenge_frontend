@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RestResponseModel } from '../../../model/restresponse.model';
 import { BoardService } from '../../../services/board.service';
+import { ManageTableComponent } from '../manage-table/manage-table.component';
 
 @Component({
-  selector: 'app-board-crud',
-  templateUrl: './board-crud.component.html',
-  styleUrls: ['./board-crud.component.css']
+  providers: [ManageTableComponent],
+  selector: 'app-manage-create-board',
+  templateUrl: './manage-create-board.component.html',
+  styleUrls: ['./manage-create-board.component.css']
 })
-export class BoardCrudComponent{
+export class ManageCreateBoardComponent {
+
 
   boardName: string = "";
   restResponse: RestResponseModel;
-  showSuccessMessage:boolean = false;
-  showErrorMessage:boolean  = false;
+  showSuccessMessage: boolean = false;
+  showErrorMessage: boolean = false;
 
-  constructor(private boardService: BoardService) { }
+  constructor(private boardService: BoardService, private manageTableComponent:ManageTableComponent) { }
 
 
   public addBoard(): void {
@@ -24,6 +27,7 @@ export class BoardCrudComponent{
         this.boardName = "";
         this.showSuccessMessage = true;
         this.showErrorMessage = false;
+        this.manageTableComponent.getBoardsByUser("1")
       } else {
         this.boardName = "";
         this.showSuccessMessage = false;
@@ -31,7 +35,4 @@ export class BoardCrudComponent{
       }
     })
   }
-
-
-
 }

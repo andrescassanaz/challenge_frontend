@@ -8,10 +8,10 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { BoardComponent } from './components/board/board.component';
 import { HomeComponent } from './components/home/home.component';
 import { APP_ROUTING } from './app.routes';
-import { BoardCrudComponent } from './components/crud/board-crud/board-crud.component';
 import { FormsModule } from '@angular/forms';
-import { BoardCrudTableComponent } from './components/crud/board-crud/board-crud-table/board-crud-table.component';
 import { ManageComponent } from './components/manage/manage.component';
+import { ManageTableComponent } from './components/manage/manage-table/manage-table.component';
+import { ManageCreateBoardComponent } from './components/manage/manage-create-board/manage-create-board.component';
 
 
 
@@ -22,9 +22,9 @@ import { ManageComponent } from './components/manage/manage.component';
     NavbarComponent,
     BoardComponent,
     HomeComponent,
-    BoardCrudComponent,
-    BoardCrudTableComponent,
-    ManageComponent
+    ManageComponent,
+    ManageTableComponent,
+    ManageCreateBoardComponent
   ],
   imports: [
     BrowserModule,
