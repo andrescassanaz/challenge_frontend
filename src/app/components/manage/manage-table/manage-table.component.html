@@ -1,7 +1,9 @@
-<button type="button" class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="#createBoardModal">
+
+<div class="text-right">
+<button type="button" class="btn btn-primary btn-sm mb-2 mr-4 " data-toggle="modal" data-target="#createBoardModal">
   <i class="fas fa-plus"></i> Create Board
 </button>
-
+</div>
 <div *ngFor="let board of userBoards" class="card">
   <div class="card-body">
 
@@ -14,7 +16,7 @@
         data-target="#addLocationModal">
           <i class="fas fa-plus"></i> Add Location
         </button>
-        <button type="button" class="btn btn-primary btn-sm m-1" (click)="deleteBoard(board.id)">
+        <button type="button" class="btn btn-primary btn-sm m-1" (click)="selectBoard(board.id)" data-toggle="modal" data-target="#confirmationDeleteBoardModal">
           <i class="far fa-trash-alt"></i> Delete Board
         </button>
       </div>
@@ -25,7 +27,7 @@
         <tr *ngFor="let location of board.locations">
           <td>{{location.city}}, {{location.country}}</td>
           <td class="text-right">
-            <button type="button" class="btn btn-light" (click)="deleteLocationOfBoard(board.id,location.woeid)">
+            <button type="button" class="btn btn-light" (click)="selectBoardAndLocation(board.id,location.woeid)" data-toggle="modal" data-target="#confirmationDeleteLocationModal">
               <i class="fas fa-times"></i>
             </button>
           </td>
@@ -36,6 +38,53 @@
   </div>
 </div>
 
+
+
+
+
+
+<!-- confirmationDeleteBoardModal -->
+<div class="modal fade" id="confirmationDeleteBoardModal" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteBoardModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmationDeleteBoardModalLabel">Delete Board</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteBoard(selectedBoard)">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- confirmationDeleteLocationModal -->
+<div class="modal fade" id="confirmationDeleteLocationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteLocationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmationDeleteLocationModalLabel">Delete Location</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteLocationOfBoard(selectedBoard,selectedLocation)">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <!-- Modal create Board -->
@@ -60,7 +109,7 @@
           <div *ngIf="showBoardErrorMessage" class="alert alert-danger" role="alert">Error!: {{restResponse.message}}</div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hideMessages()">Close</button>
           <button type="submit" class="btn btn-primary">Create</button>
         </div>
       </form>
@@ -92,7 +141,7 @@
             <div *ngIf="showLocationErrorMessage" class="alert alert-danger" role="alert">Error!: {{restResponse.message}}</div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hideMessages()">Close</button>
             <button type="submit" class="btn btn-primary">Add Location</button>
           </div>
         </form>
@@ -100,3 +149,6 @@
     </div>
   </div>
 </div>
+
+
+

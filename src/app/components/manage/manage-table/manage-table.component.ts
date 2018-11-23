@@ -15,6 +15,7 @@ export class ManageTableComponent implements OnInit {
   boardName: string = "";
   city: string = "";
   selectedBoard: string = "";
+  selectedLocation: string = "";
   restResponse: RestResponseModel;
   showBoardSuccessMessage: boolean = false;
   showBoardErrorMessage: boolean = false;
@@ -70,9 +71,19 @@ export class ManageTableComponent implements OnInit {
   }
 
   public selectBoard(idBoard: string) {
-    console.log("VIENE: " + idBoard);
     this.selectedBoard = idBoard;
-    console.log("SE GUARDO: " + this.selectedBoard);
+  }
+
+  public selectBoardAndLocation(idBoard:string, woeid:string){
+    this.selectedBoard = idBoard;
+    this.selectedLocation = woeid;
+  }
+
+  public hideMessages(){
+    this.showBoardSuccessMessage = false;
+    this.showBoardErrorMessage = false;
+    this.showLocationSuccessMessage = false;
+    this.showLocationErrorMessage = false;
   }
 
   public addLocation(): void {
