@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { ManageComponent } from './components/manage/manage.component';
 import { ManageTableComponent } from './components/manage/manage-table/manage-table.component';
 import { ManageCreateBoardComponent } from './components/manage/manage-create-board/manage-create-board.component';
+import { WebsocketComponent } from './components/websocket/websocket.component';
 
 
 
@@ -24,7 +25,8 @@ import { ManageCreateBoardComponent } from './components/manage/manage-create-bo
     HomeComponent,
     ManageComponent,
     ManageTableComponent,
-    ManageCreateBoardComponent
+    ManageCreateBoardComponent,
+    WebsocketComponent
   ],
   imports: [
     BrowserModule,
