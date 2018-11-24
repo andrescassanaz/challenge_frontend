@@ -14,15 +14,16 @@
                 <div class="divTableBody">
                   <div class="divTableRow">
                     <div class="divTableCell text-left font-weight-bold">{{location.city}}<small>, {{location.country}}</small></div>
-                    <div class="divTableCell text-right"> <img src="http://l.yimg.com/a/i/us/we/52/{{location.weatherPoints[location.weatherPoints.length-1].code}}.gif"
+                    <div class="divTableCell text-right"> <img *ngIf="location.weatherPoints" src="http://l.yimg.com/a/i/us/we/52/{{location.weatherPoints[location.weatherPoints.length-1].code}}.gif"
                         alt=""></div>
                   </div>
                   <div class="divTableRow">
                     <div class="divTableCell text-left">
-                      <h4>{{location.weatherPoints[location.weatherPoints.length-1].temp}} C°</h4>
+                      <h4 *ngIf="location.weatherPoints">{{location.weatherPoints[location.weatherPoints.length-1].temp}}
+                        C°</h4>
                     </div>
-                    <div class="divTableCell text-right">{{location.weatherPoints[location.weatherPoints.length-1].description}}</div>
-                    
+                    <div class="divTableCell text-right" *ngIf="location.weatherPoints">{{location.weatherPoints[location.weatherPoints.length-1].description}}</div>
+
                   </div>
                 </div>
               </div>

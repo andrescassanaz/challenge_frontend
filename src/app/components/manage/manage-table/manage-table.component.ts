@@ -24,9 +24,10 @@ export class ManageTableComponent implements OnInit {
 
   constructor(private boardService: BoardService, private locationService: LocationService) { }
 
+  currentUser:string = "1";
 
   ngOnInit() {
-    this.getBoardsByUser("1");
+    this.getBoardsByUser(this.currentUser);
   }
 
   private userBoards: BoardModel[];
@@ -35,21 +36,26 @@ export class ManageTableComponent implements OnInit {
 
   public deleteBoard(id: string): void {
     this.boardService.deleteBoard(id).subscribe(res => {
-      this.getBoardsByUser("1");
+      this.getBoardsByUser(this.currentUser);
     })
   }
 
   public deleteLocationOfBoard(idBoard: string, woeid: string): void {
-    console.log(idBoard + " - " + woeid);
-    this.boardService.deleteLocationOfBoard(idBoard, woeid).subscribe(res => {
-      this.getBoardsByUser("1");
+    this.locationService.deleteLocationOfBoard(idBoard, woeid).subscribe(res => {
+      this.getBoardsByUser(this.currentUser);
     })
   }
 
-  public getBoardsByUser(userId: string): void {
+  private getBoardsByUser(userId: string): void {
     this.boardService.getBoardsByUser(userId).subscribe(res => {
-      this.queryResult = res as QueryResultModel;
-      this.userBoards = this.queryResult.queryResponse;
+      this.userBoards = res.queryResponse
+
+      for (let i = 0; i < this.userBoards.length; i++) {
+        this.locationService.getLocationsByBoard(this.userBoards[i].id).subscribe(res => {
+          this.userBoards[i].locations = res.queryResponse
+        })
+      }
+
     })
   }
 
@@ -74,12 +80,12 @@ export class ManageTableComponent implements OnInit {
     this.selectedBoard = idBoard;
   }
 
-  public selectBoardAndLocation(idBoard:string, woeid:string){
+  public selectBoardAndLocation(idBoard: string, woeid: string) {
     this.selectedBoard = idBoard;
     this.selectedLocation = woeid;
   }
 
-  public hideMessages(){
+  public hideMessages() {
     this.showBoardSuccessMessage = false;
     this.showBoardErrorMessage = false;
     this.showLocationSuccessMessage = false;
