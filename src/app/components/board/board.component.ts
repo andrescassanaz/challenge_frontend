@@ -44,6 +44,8 @@ export class BoardComponent implements OnInit{
       }
 
     })
+
+    
   }
 
   private getBoardsByUserWithUpdatedWeather(userId: string): void {

@@ -13,16 +13,16 @@ export class LocationService {
   constructor(private http: HttpClient) { }
 
   public addLocation(city: string, boardId: string): Observable<RestResponseModel> {
-    return this.http.put<RestResponseModel>(environment.rootEndpoint+'/locations', { "city": city, "boardId": boardId }
+    return this.http.put<RestResponseModel>(environment.rootEndpoint + '/locations', { "city": city, "boardId": boardId }
     );
   }
 
-  public getLocationsByBoard(boardId:String): Observable<QueryResultModel>{
-    return this.http.get<QueryResultModel>(environment.rootEndpoint+'/locations/'+boardId);
-}
+  public getLocationsByBoard(boardId: String): Observable<QueryResultModel> {
+    return this.http.get<QueryResultModel>(environment.rootEndpoint + '/locations/' + boardId);
+  }
 
-public deleteLocationOfBoard(boardId: string, woeid: string): Observable<QueryResultModel> {
-  return this.http.delete<QueryResultModel>(environment.rootEndpoint+'/locations/'+boardId+'/'+woeid);
-}
+  public deleteLocationOfBoard(boardId: string, woeid: string): Observable<QueryResultModel> {
+    return this.http.delete<QueryResultModel>(environment.rootEndpoint + '/locations/' + boardId + '/' + woeid);
+  }
 
 }
