@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardModel } from '../../model/board.model';
-import { QueryResultModel } from '../../model/queryresult.model';
 import { BoardService } from '../../services/board.service';
-import { Observable } from 'rxjs';
 import { LocationService } from '../../services/location.service';
 import { WeatherpointService } from '../../services/weatherpoint.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-board',
@@ -15,10 +14,11 @@ export class BoardComponent implements OnInit{
 
   private userBoards: BoardModel[];
 
-  constructor(private boardService: BoardService, private locationService: LocationService, private weatherPointService: WeatherpointService) {
+    constructor(private boardService: BoardService, private locationService: LocationService, private weatherPointService: WeatherpointService, private authService:AuthService) {
 
-    //this.getBoardsByUserWithUpdatedWeather("1");
-    this.getBoardsWithLocationsAndWeatherpoint("1");
+    let user = authService.getUser();
+    console.log("USUARIO: "+user.username);
+    this.getBoardsWithLocationsAndWeatherpoint(user.username);
 
   }
  

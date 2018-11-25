@@ -4,6 +4,7 @@ import { QueryResultModel } from '../../../model/queryresult.model';
 import { BoardService } from '../../../services/board.service';
 import { RestResponseModel } from '../../../model/restresponse.model';
 import { LocationService } from '../../../services/location.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-manage-table',
@@ -21,10 +22,15 @@ export class ManageTableComponent implements OnInit {
   showBoardErrorMessage: boolean = false;
   showLocationSuccessMessage: boolean = false;
   showLocationErrorMessage: boolean = false;
+  currentUser:string = "";
 
-  constructor(private boardService: BoardService, private locationService: LocationService) { }
+  constructor(private boardService: BoardService, private locationService: LocationService, private authService:AuthService) { 
 
-  currentUser:string = "1";
+    let user = authService.getUser();
+    this.currentUser = user.username;
+
+  }
+
 
   ngOnInit() {
     this.getBoardsByUser(this.currentUser);
@@ -61,13 +67,13 @@ export class ManageTableComponent implements OnInit {
 
 
   public addBoard(): void {
-    this.boardService.addBoard(this.boardName, "1").subscribe(res => {
+    this.boardService.addBoard(this.boardName, this.currentUser).subscribe(res => {
       this.restResponse = res as RestResponseModel;
       if (this.restResponse.responseCode == '200') {
         this.boardName = "";
         this.showBoardSuccessMessage = true;
         this.showBoardErrorMessage = false;
-        this.getBoardsByUser("1");
+        this.getBoardsByUser(this.currentUser);
       } else {
         this.boardName = "";
         this.showBoardSuccessMessage = false;
@@ -99,7 +105,7 @@ export class ManageTableComponent implements OnInit {
         this.boardName = "";
         this.showLocationSuccessMessage = true;
         this.showLocationErrorMessage = false;
-        this.getBoardsByUser("1");
+        this.getBoardsByUser(this.currentUser);
       } else {
         this.boardName = "";
         this.showLocationSuccessMessage = false;

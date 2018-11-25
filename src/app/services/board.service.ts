@@ -13,17 +13,17 @@ export class BoardService {
 
   constructor(private http: HttpClient) { }
 
-  public getBoardsByUserWithUpdatedWeather(userId: string): Observable<QueryResultModel> {
-    return this.http.get<QueryResultModel>(environment.rootEndpoint + '/boards/' + userId);
+  public getBoardsByUserWithUpdatedWeather(username: string): Observable<QueryResultModel> {
+    return this.http.get<QueryResultModel>(environment.rootEndpoint + '/boards/' + username);
   }
 
 
-  public addBoard(name: string, userId: string): Observable<RestResponseModel> {
-    return this.http.put<RestResponseModel>(environment.rootEndpoint + '/boards/', { "name": name, "userDto": { "id": userId } });
+  public addBoard(name: string, username: string): Observable<RestResponseModel> {
+    return this.http.put<RestResponseModel>(environment.rootEndpoint + '/boards/', { "name": name, "userDto": { "username": username } });
   }
 
-  public getBoardsByUser(userId: string): Observable<QueryResultModel> {
-    return this.http.get<QueryResultModel>(environment.rootEndpoint + '/boards/' + userId);
+  public getBoardsByUser(username: string): Observable<QueryResultModel> {
+    return this.http.get<QueryResultModel>(environment.rootEndpoint + '/boards/' + username);
   }
 
   public deleteBoard(boardId: string): Observable<QueryResultModel> {

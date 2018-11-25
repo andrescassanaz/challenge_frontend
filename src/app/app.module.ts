@@ -7,13 +7,23 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { BoardComponent } from './components/board/board.component';
 import { HomeComponent } from './components/home/home.component';
-import { APP_ROUTING } from './app.routes';
+import { RoutingModule } from './app.routes';
 import { FormsModule } from '@angular/forms';
 import { ManageComponent } from './components/manage/manage.component';
 import { ManageTableComponent } from './components/manage/manage-table/manage-table.component';
-import { ManageCreateBoardComponent } from './components/manage/manage-create-board/manage-create-board.component';
 import { WebsocketComponent } from './components/websocket/websocket.component';
+import { LoginComponent } from './components/login/login.component';
+import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
+import { UserModel } from './model/user.model';
 
+export function tokenGetter() {
+  const json = localStorage.getItem('user');
+  let user = <UserModel>JSON.parse(json);
+  if (!user) {
+    return null;
+  }
+  return user.token;
+}
 
 
 @NgModule({
@@ -25,13 +35,18 @@ import { WebsocketComponent } from './components/websocket/websocket.component';
     HomeComponent,
     ManageComponent,
     ManageTableComponent,
-    ManageCreateBoardComponent,
-    WebsocketComponent
+    WebsocketComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    APP_ROUTING,
+    RoutingModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    }),
     FormsModule
   ],
   providers: [],

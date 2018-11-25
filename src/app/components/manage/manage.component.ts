@@ -9,7 +9,7 @@ import { BoardService } from '../../services/board.service';
 })
 export class ManageComponent {
 
-  
+  currentUser:string = "andres";
 
   boardName: string = "";
   restResponse: RestResponseModel;
@@ -20,7 +20,7 @@ export class ManageComponent {
 
 
   public addBoard(): void {
-    this.boardService.addBoard(this.boardName, "1").subscribe(res => {
+    this.boardService.addBoard(this.boardName, this.currentUser).subscribe(res => {
       this.restResponse = res as RestResponseModel;
       if (this.restResponse.responseCode == '200') {
         this.boardName = "";
