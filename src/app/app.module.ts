@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -15,6 +17,7 @@ import { WebsocketComponent } from './components/websocket/websocket.component';
 import { LoginComponent } from './components/login/login.component';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { UserModel } from './model/user.model';
+import { TokenInterceptor } from './interceptors/tokenInterceptor';
 
 export function tokenGetter() {
   const json = localStorage.getItem('user');
@@ -49,7 +52,7 @@ export function tokenGetter() {
     }),
     FormsModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

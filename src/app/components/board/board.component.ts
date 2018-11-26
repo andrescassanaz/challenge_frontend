@@ -10,21 +10,16 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
-export class BoardComponent implements OnInit{
+export class BoardComponent implements OnInit {
 
   private userBoards: BoardModel[];
 
-    constructor(private boardService: BoardService, private locationService: LocationService, private weatherPointService: WeatherpointService, private authService:AuthService) {
-
+  constructor(private boardService: BoardService, private locationService: LocationService, private weatherPointService: WeatherpointService, private authService: AuthService) {
     let user = authService.getUser();
-    console.log("USUARIO: "+user.username);
     this.getBoardsWithLocationsAndWeatherpoint(user.username);
-
   }
- 
-  ngOnInit() {
 
-    
+  ngOnInit() {
   }
   private getBoardsWithLocationsAndWeatherpoint(userId: string): void {
     this.boardService.getBoardsByUser(userId).subscribe(res => {
@@ -44,8 +39,6 @@ export class BoardComponent implements OnInit{
       }
 
     })
-
-    
   }
 
   private getBoardsByUserWithUpdatedWeather(userId: string): void {

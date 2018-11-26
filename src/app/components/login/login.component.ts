@@ -10,16 +10,17 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
 
   user: UserModel = new UserModel();
+  statusCode: String = "0";
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
- 
+
   }
 
 
   login() {
-      this.authService.login(this.user);
+    this.statusCode = this.authService.login(this.user);
   }
 
 }

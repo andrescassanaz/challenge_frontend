@@ -1,24 +1,41 @@
-<div class="container h-100">
-  <div class="row h-100 justify-content-center align-items-center">
+<div class="container vertical-center">
+ 
+  <div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
       <div class="col-md-6 mx-auto">
-          <div class="card rounded-2">
-              <div class="card-header text-center">
-                  <h3 class="mb-0">Bienvenido</h3>
+        <div class="card rounded-2">
+          <div class="card-body">
+              <img class="mx-auto d-block" src="assets/img/redbee-logo.png" alt="image">
+              <h2 class="text-center">Redbee Challenge</h2>
+              <h5 class="text-center">Andrés Cassanaz</h5>
+            <form class="form" (keyup.enter)="login()">
+              <div class="form-group">
+                <label>User</label>
+                <input type="text" class="form-control form-control-lg rounded-0" name="username" [(ngModel)]="user.username">
               </div>
-              <div class="card-body">
-                  <form class="form" (keyup.enter)="login()">
-                      <div class="form-group">
-                          <label>Usuario</label>
-                          <input type="text" class="form-control form-control-lg rounded-0" name="username" [(ngModel)]="user.username">
-                      </div>
-                      <div class="form-group">
-                          <label>Contraseña</label>
-                          <input type="password" class="form-control form-control-lg rounded-0" name="password" [(ngModel)]="user.password">
-                      </div>
-                      <button type="button" class="btn btn-block btn-primary btn-lg" (click)="login()">Ingresar</button>
-                  </form>
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control form-control-lg rounded-0" name="password" [(ngModel)]="user.password">
               </div>
+              <button type="button" class="btn btn-block btn-primary btn-lg" (click)="login()">Log In</button>
+            </form>
+
           </div>
+
+        </div>
+
+        <div *ngIf="statusCode != 0" class="mt-1" >
+          <div class="alert alert-danger" role="alert">
+            Usuario o password incorrecto.
+          </div>
+        </div>
       </div>
+
+    </div>
+
+
   </div>
+
+
+
 </div>
