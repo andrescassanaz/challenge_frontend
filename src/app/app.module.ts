@@ -20,6 +20,8 @@ import { UserModel } from './model/user.model';
 import { TokenInterceptor } from './interceptors/tokenInterceptor';
 import { HistoricalComponent } from './components/historical/historical.component';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 export function tokenGetter() {
   const json = localStorage.getItem('user');
@@ -54,7 +56,8 @@ export function tokenGetter() {
         tokenGetter: tokenGetter
       }
     }),
-    FormsModule
+    FormsModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent]

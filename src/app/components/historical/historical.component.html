@@ -3,7 +3,14 @@
 <div class="container" *ngIf="!showSpinner">
   <h3>Historical</h3>
   <hr>
-
+  <div class="col-xs-12 col-12 col-md-5 col-lg-5 form-group">
+    <div class="form-group">
+      <div class="input-group">
+        <input type="text" class="form-control" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" [(ngModel)]="selectedDate">
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="findByDate()">Find</button>
+  </div>
   <div class="card-columns">
     <div *ngFor="let board of userBoards" class="card text-white bg-secondary mb-3">
       <div class="card-body">
@@ -15,19 +22,19 @@
               <div class="divTableCell text-left font-weight-bold">{{location.city}}</div>
               <table class="table table-sm" *ngIf="location.weatherPoints">
                 <thead>
-                <tr>
-                  <th scope="col"><small><b>Temp</b></small> </th>
-                  <th scope="col"><small><b>Description</b></small></th>
-                  <th scope="col"><small><b>Date</b></small></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let wp of location.weatherPoints">
-                  <td><small>{{wp.temp}} °C</small></td>
-                  <td><small>{{wp.description}}</small></td>
-                  <td><small>{{wp.date | date :'mediumTime'}} </small></td>
-                </tr>
-              </tbody>
+                  <tr>
+                    <th scope="col"><small><b>Temp</b></small> </th>
+                    <th scope="col"><small><b>Description</b></small></th>
+                    <th scope="col"><small><b>Date</b></small></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let wp of location.weatherPoints">
+                    <td><small>{{wp.temp}} °C</small></td>
+                    <td><small>{{wp.description}}</small></td>
+                    <td><small>{{wp.date | date :'mediumTime'}} </small></td>
+                  </tr>
+                </tbody>
               </table>
             </li>
           </ul>

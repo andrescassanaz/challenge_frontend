@@ -17,7 +17,7 @@ export class WeatherpointService {
     return this.http.get<QueryResultModel>(environment.rootEndpoint + '/weatherpoints/' + woeid);
   }
 
-  public getWeatherPointsByLocationAndDate(woeid:String, date:String): Observable<QueryResultModel>{
+  public getWeatherPointsByLocationAndDate(woeid:String, date:number): Observable<QueryResultModel>{
     return this.http.get<QueryResultModel>(environment.rootEndpoint+'/weatherpoints/'+woeid+'/'+date);
 }
 
