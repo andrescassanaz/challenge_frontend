@@ -1,4 +1,6 @@
-<div class="container">
+<app-spinner *ngIf="showSpinner"></app-spinner>
+
+<div class="container" *ngIf="!showSpinner">
   <h3>Historical</h3>
   <hr>
 

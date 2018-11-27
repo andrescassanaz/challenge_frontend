@@ -21,6 +21,7 @@ export class HistoricalComponent{
 
   private selectedDate = "1543295694858";
   private userBoards: BoardModel[];
+  private showSpinner:boolean = true;
 
   private getBoardsWithLocationsAndWeatherpoint(userId: string): void {
     this.boardService.getBoardsByUser(userId).subscribe(res => {
@@ -33,6 +34,7 @@ export class HistoricalComponent{
           for (let x = 0; x < this.userBoards[i].locations.length; x++) {
             this.weatherPointService.getWeatherPointsByLocationAndDate(this.userBoards[i].locations[x].woeid, this.selectedDate).subscribe(res => {
               this.userBoards[i].locations[x].weatherPoints = res.queryResponse
+              this.showSpinner = false;
               
             })
           }

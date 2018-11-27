@@ -31,6 +31,7 @@ export class ManageTableComponent implements OnInit {
 
   }
 
+  private showSpinner:boolean = true;
 
   ngOnInit() {
     this.getBoardsByUser(this.currentUser);
@@ -59,6 +60,7 @@ export class ManageTableComponent implements OnInit {
       for (let i = 0; i < this.userBoards.length; i++) {
         this.locationService.getLocationsByBoard(this.userBoards[i].id).subscribe(res => {
           this.userBoards[i].locations = res.queryResponse
+          this.showSpinner = false;
         })
       }
 

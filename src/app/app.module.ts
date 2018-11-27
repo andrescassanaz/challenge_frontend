@@ -19,6 +19,7 @@ import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { UserModel } from './model/user.model';
 import { TokenInterceptor } from './interceptors/tokenInterceptor';
 import { HistoricalComponent } from './components/historical/historical.component';
+import { SpinnerComponent } from './components/shared/spinner/spinner.component';
 
 export function tokenGetter() {
   const json = localStorage.getItem('user');
@@ -41,7 +42,8 @@ export function tokenGetter() {
     ManageTableComponent,
     WebsocketComponent,
     LoginComponent,
-    HistoricalComponent
+    HistoricalComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

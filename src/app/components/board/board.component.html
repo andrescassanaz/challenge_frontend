@@ -1,8 +1,11 @@
-<div class="container">
+
+<app-spinner *ngIf="showSpinner"></app-spinner>
+
+<div class="container" *ngIf="!showSpinner">
 <h3>Boards</h3>
 <hr>
 
-  <div class="card-columns">
+  <div class="card-columns" >
     <div *ngFor="let board of userBoards" class="card text-white bg-secondary mb-3">
       <div class="card-body">
         <h5 class="card-title">{{board.name}}</h5>

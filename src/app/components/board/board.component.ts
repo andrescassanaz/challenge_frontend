@@ -13,6 +13,7 @@ import { AuthService } from '../../services/auth.service';
 export class BoardComponent implements OnInit {
 
   private userBoards: BoardModel[];
+  private showSpinner:boolean = true;
 
   constructor(private boardService: BoardService, private locationService: LocationService, private weatherPointService: WeatherpointService, private authService: AuthService) {
     let user = authService.getUser();
@@ -23,15 +24,16 @@ export class BoardComponent implements OnInit {
   }
   private getBoardsWithLocationsAndWeatherpoint(userId: string): void {
     this.boardService.getBoardsByUser(userId).subscribe(res => {
-      this.userBoards = res.queryResponse
+      this.userBoards = res.queryResponse;
 
       for (let i = 0; i < this.userBoards.length; i++) {
         this.locationService.getLocationsByBoard(this.userBoards[i].id).subscribe(res => {
-          this.userBoards[i].locations = res.queryResponse
+          this.userBoards[i].locations = res.queryResponse;
 
           for (let x = 0; x < this.userBoards[i].locations.length; x++) {
             this.weatherPointService.getWeatherPointsByLocation(this.userBoards[i].locations[x].woeid).subscribe(res => {
-              this.userBoards[i].locations[x].weatherPoints = res.queryResponse
+              this.userBoards[i].locations[x].weatherPoints = res.queryResponse;
+              this.showSpinner = false;
             })
           }
 
