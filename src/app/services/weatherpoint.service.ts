@@ -13,8 +13,12 @@ export class WeatherpointService {
   constructor(private http: HttpClient) { }
 
 
-  public getWeatherPointsByLocation(woeid:String): Observable<QueryResultModel>{
-    return this.http.get<QueryResultModel>(environment.rootEndpoint+'/weatherpoints/'+woeid);
+  public getWeatherPointsByLocation(woeid: String): Observable<QueryResultModel> {
+    return this.http.get<QueryResultModel>(environment.rootEndpoint + '/weatherpoints/' + woeid);
+  }
+
+  public getWeatherPointsByLocationAndDate(woeid:String, date:String): Observable<QueryResultModel>{
+    return this.http.get<QueryResultModel>(environment.rootEndpoint+'/weatherpoints/'+woeid+'/'+date);
 }
 
 }

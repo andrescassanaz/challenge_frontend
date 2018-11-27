@@ -6,6 +6,7 @@ import { WebsocketComponent } from './components/websocket/websocket.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
+import { HistoricalComponent } from './components/historical/historical.component';
 
 export const routes: Routes = [{
     path: 'login',
@@ -17,6 +18,7 @@ export const routes: Routes = [{
         { path: 'home', component: HomeComponent },
         { path: 'boards', component: BoardComponent },
         { path: 'manage', component: ManageComponent },
+        { path: 'historical', component: HistoricalComponent },
         { path: 'websocket', component: WebsocketComponent },
         { path: '**', pathMatch: 'full', redirectTo: '' }
     ]
