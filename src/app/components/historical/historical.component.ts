@@ -19,7 +19,7 @@ export class HistoricalComponent{
     
   }
   bsConfig: Partial<BsDatepickerConfig> = Object.assign({}, { containerClass: "theme-default" });
-  private selectedDate = "1543295694858";
+  private selectedDate = "0";
   private userBoards: BoardModel[];
   private showSpinner:boolean = false;
 

@@ -9,7 +9,7 @@
         <input type="text" class="form-control" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" [(ngModel)]="selectedDate">
       </div>
     </div>
-    <button type="button" class="btn btn-primary" (click)="findByDate()">Find</button>
+    <button type="button" class="btn btn-primary" (click)="findByDate()">Search</button>
   </div>
   <div class="card-columns">
     <div *ngFor="let board of userBoards" class="card text-white bg-secondary mb-3">
