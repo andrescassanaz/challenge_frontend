@@ -1,15 +1,21 @@
-
 <app-spinner *ngIf="showSpinner"></app-spinner>
 
 <div class="container" *ngIf="!showSpinner">
-<h3>Boards</h3>
-<hr>
+  <h3>Boards</h3>
+  <hr>
 
-  <div class="card-columns" >
+  <div *ngIf="showCreateBoardMessage" class="alert alert-warning" role="alert">You do not have any board created yet.
+    Please create one.
+  </div>
+
+  <div *ngIf="showAddLocationMessage" class="alert alert-warning" role="alert">You have empty boards. Please add the locations.</div>
+
+  <div class="card-columns">
     <div *ngFor="let board of userBoards" class="card text-white bg-secondary mb-3">
       <div class="card-body">
         <h5 class="card-title">{{board.name}}</h5>
         <div class="card-text">
+
           <ul *ngFor="let location of board.locations" class="list-group text-dark">
 
             <li class="list-group-item d-flex justify-content-between align-items-center">

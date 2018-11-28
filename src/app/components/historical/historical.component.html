@@ -3,6 +3,9 @@
 <div class="container" *ngIf="!showSpinner">
   <h3>Historical</h3>
   <hr>
+
+  <div *ngIf="showEmptyResultsMessage" class="alert alert-warning" role="alert">No results found for that date. </div>
+
   <div class="col-xs-12 col-12 col-md-5 col-lg-5 form-group">
     <div class="form-group">
       <div class="input-group">

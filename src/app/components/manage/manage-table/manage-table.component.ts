@@ -13,16 +13,17 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class ManageTableComponent implements OnInit {
 
-  boardName: string = "";
-  city: string = "";
-  selectedBoard: string = "";
-  selectedLocation: string = "";
-  restResponse: RestResponseModel;
-  showBoardSuccessMessage: boolean = false;
-  showBoardErrorMessage: boolean = false;
-  showLocationSuccessMessage: boolean = false;
-  showLocationErrorMessage: boolean = false;
-  currentUser:string = "";
+  private boardName: string = "";
+  private city: string = "";
+  private selectedBoard: string = "";
+  private selectedLocation: string = "";
+  private restResponse: RestResponseModel;
+  private showBoardSuccessMessage: boolean = false;
+  private showBoardErrorMessage: boolean = false;
+  private showLocationSuccessMessage: boolean = false;
+  private showLocationErrorMessage: boolean = false;
+  private currentUser:string = "";
+  private showSpinner:boolean = true;
 
   constructor(private boardService: BoardService, private locationService: LocationService, private authService:AuthService) { 
 
@@ -31,7 +32,6 @@ export class ManageTableComponent implements OnInit {
 
   }
 
-  private showSpinner:boolean = true;
 
   ngOnInit() {
     this.getBoardsByUser(this.currentUser);
@@ -56,6 +56,10 @@ export class ManageTableComponent implements OnInit {
   private getBoardsByUser(userId: string): void {
     this.boardService.getBoardsByUser(userId).subscribe(res => {
       this.userBoards = res.queryResponse
+
+      if(this.userBoards.length == 0){
+        this.showSpinner = false;
+      }
 
       for (let i = 0; i < this.userBoards.length; i++) {
         this.locationService.getLocationsByBoard(this.userBoards[i].id).subscribe(res => {

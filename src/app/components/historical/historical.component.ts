@@ -22,6 +22,7 @@ export class HistoricalComponent{
   private selectedDate = "0";
   private userBoards: BoardModel[];
   private showSpinner:boolean = false;
+  private showEmptyResultsMessage:boolean = false;
 
   private findByDate(){
     this.showSpinner = true;
@@ -34,9 +35,17 @@ export class HistoricalComponent{
     this.boardService.getBoardsByUser(userId).subscribe(res => {
       this.userBoards = res.queryResponse
 
+      if(this.userBoards.length == 0){
+        this.showSpinner = false;
+      }
+
       for (let i = 0; i < this.userBoards.length; i++) {
         this.locationService.getLocationsByBoard(this.userBoards[i].id).subscribe(res => {
           this.userBoards[i].locations = res.queryResponse
+
+          if(this.userBoards[i].locations.length == 0){
+            this.showSpinner = false;
+          }
 
           for (let x = 0; x < this.userBoards[i].locations.length; x++) {
             this.weatherPointService.getWeatherPointsByLocationAndDate(this.userBoards[i].locations[x].woeid, date).subscribe(res => {
