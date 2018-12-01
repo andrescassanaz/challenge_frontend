@@ -13,7 +13,6 @@ import { RoutingModule } from './app.routes';
 import { FormsModule } from '@angular/forms';
 import { ManageComponent } from './components/manage/manage.component';
 import { ManageTableComponent } from './components/manage/manage-table/manage-table.component';
-import { WebsocketComponent } from './components/websocket/websocket.component';
 import { LoginComponent } from './components/login/login.component';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { UserModel } from './model/user.model';
@@ -42,7 +41,6 @@ export function tokenGetter() {
     HomeComponent,
     ManageComponent,
     ManageTableComponent,
-    WebsocketComponent,
     LoginComponent,
     HistoricalComponent,
     SpinnerComponent

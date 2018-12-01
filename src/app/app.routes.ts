@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router, NavigationStart } from '@angular/router';
 import { BoardComponent } from './components/board/board.component';
 import { ManageComponent } from './components/manage/manage.component';
-import { WebsocketComponent } from './components/websocket/websocket.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
@@ -19,7 +18,6 @@ export const routes: Routes = [{
         { path: 'boards', component: BoardComponent },
         { path: 'manage', component: ManageComponent },
         { path: 'historical', component: HistoricalComponent },
-        { path: 'websocket', component: WebsocketComponent },
         { path: '**', pathMatch: 'full', redirectTo: '' }
     ]
 

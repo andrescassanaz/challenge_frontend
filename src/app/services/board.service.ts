@@ -30,8 +30,12 @@ export class BoardService {
     return this.http.delete<QueryResultModel>(environment.rootEndpoint+'/boards/'+boardId);
   }
 
+  public startScheduler(username:string): void {
+    this.http.post(environment.rootEndpoint+'/startScheduler', username).subscribe(res =>{});
+  }
 
-
-
+  public stopScheduler(): void {
+    this.http.post(environment.rootEndpoint+'/stopScheduler', {}).subscribe(res =>{});
+  }
 
 }

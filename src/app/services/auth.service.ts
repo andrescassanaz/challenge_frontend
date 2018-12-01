@@ -21,7 +21,7 @@ export class AuthService {
     let statusCode: string;
     this.http.post(environment.rootEndpoint + '/login', user)
       .subscribe(
-        (res) => {
+        (res) => {  
           this.queryResult = res as QueryResultModel;
           user = this.queryResult.queryResponse[0] as UserModel;
           this.setUser(user);
@@ -68,7 +68,6 @@ export class AuthService {
 
   public refreshToken(headers: HttpHeaders): void {
     const user = this.getUser();
-    console.log(headers);
     user.token = headers.get('Authorization');
     this.setUser(user);
   }
