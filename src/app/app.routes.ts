@@ -6,11 +6,17 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
 import { HistoricalComponent } from './components/historical/historical.component';
+import { RegisterComponent } from './components/register/register.component';
 
 export const routes: Routes = [{
     path: 'login',
     component: LoginComponent
-}, {
+}, 
+{
+    path: 'register',
+    component: RegisterComponent
+},
+{
     path: 'home',
     component: HomeComponent,
     children: [
@@ -41,7 +47,7 @@ export class RoutingModule {
                 if (event.constructor.name === "NavigationStart") {
                     let isLoggedIn = authService.isAuthenticated();
                     let navEvent = event as NavigationStart;
-                    if (!isLoggedIn && navEvent.url != '/login') {
+                    if (!isLoggedIn && navEvent.url != '/login' && navEvent.url !='/register') {
                         router.navigate(["/login"])
                     } else if (!isLoggedIn && navEvent.url == '/') {
                         router.navigate(["/login"])

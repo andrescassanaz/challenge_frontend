@@ -20,6 +20,7 @@ import { TokenInterceptor } from './interceptors/tokenInterceptor';
 import { HistoricalComponent } from './components/historical/historical.component';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { RegisterComponent } from './components/register/register.component';
 
 
 export function tokenGetter() {
@@ -43,7 +44,8 @@ export function tokenGetter() {
     ManageTableComponent,
     LoginComponent,
     HistoricalComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
