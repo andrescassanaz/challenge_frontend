@@ -22,13 +22,11 @@ export class BoardComponent implements OnDestroy {
   private showCreateBoardMessage = false;
   private showAddLocationMessage = false;
 
-  private serverUrl = 'http://localhost:8080/socket'
   private stompClient;
   private user: UserModel;
 
   constructor(private boardService: BoardService, private locationService: LocationService, private weatherPointService: WeatherpointService, private authService: AuthService, private websocketService: WebsocketService) {
     this.user = authService.getUser();
-    //this.getBoardsWithLocationsAndWeatherpoint(this.user.username);
     this.connectWebSocket();
     this.startScheduler();
   }
@@ -37,38 +35,7 @@ export class BoardComponent implements OnDestroy {
     this.disconnectWebSocket();
     this.stopScheduler();
   }
-/*
-  private getBoardsWithLocationsAndWeatherpoint(userId: string): void {
-    this.boardService.getBoardsByUser(userId).subscribe(res => {
-      this.userBoards = res.queryResponse;
 
-      if (this.userBoards.length == 0) {
-        this.showSpinner = false;
-        this.showCreateBoardMessage = true;
-      }
-
-      for (let i = 0; i < this.userBoards.length; i++) {
-        this.locationService.getLocationsByBoard(this.userBoards[i].id).subscribe(res => {
-          this.userBoards[i].locations = res.queryResponse;
-
-          if (this.userBoards[i].locations.length == 0) {
-            this.showSpinner = false;
-            this.showAddLocationMessage = true;
-          }
-
-          for (let x = 0; x < this.userBoards[i].locations.length; x++) {
-            this.weatherPointService.getWeatherPointsByLocation(this.userBoards[i].locations[x].woeid).subscribe(res => {
-              this.userBoards[i].locations[x].weatherPoints = res.queryResponse;
-              this.showSpinner = false;
-            })
-          }
-
-        })
-      }
-
-    })
-  }
-*/
   private getBoardsByUserWithUpdatedWeather(userId: string): void {
     this.boardService.getBoardsByUserWithUpdatedWeather(userId).subscribe(res => {
       this.userBoards = res.queryResponse

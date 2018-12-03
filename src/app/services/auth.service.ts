@@ -21,14 +21,14 @@ export class AuthService {
     let statusCode: string;
     this.http.post(environment.rootEndpoint + '/login', user)
       .subscribe(
-        (res) => {  
+        res => {  
           this.queryResult = res as QueryResultModel;
           user = this.queryResult.queryResponse[0] as UserModel;
           this.setUser(user);
           this.router.navigate(['/home']);
           statusCode = "0";
         },
-        (error) => {
+        error => {
           statusCode = error.status;
         }
       );

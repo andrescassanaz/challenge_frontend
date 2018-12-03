@@ -37,8 +37,6 @@ private user: UserModel = new UserModel();
     } else{
       this.passwordEmpty = false;
     }
-
-    console.log(isValid);
     return isValid;
   }
 }

@@ -15,17 +15,12 @@ export class RegisterService {
 
   public register(user: UserModel): String {
     let statusCode: string;
-    this.http.put(environment.rootEndpoint + '/users', user)
-      .subscribe(
-        (res) => {  
-          this.queryResult = res as QueryResultModel;
+    this.http.put(environment.rootEndpoint + '/register', user)
+      .subscribe(res => {  
+          console.log("OK");
           this.router.navigate(['/login']);
           statusCode = "0";
-        },
-        (error) => {
-          statusCode = error.status;
-        }
-      );
+        });
 
     return statusCode;
   }

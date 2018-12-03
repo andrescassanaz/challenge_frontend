@@ -25,7 +25,8 @@ export class TokenInterceptor implements HttpInterceptor {
         }
         return next.handle(request).map((event: HttpEvent<any>) => {
             /* intercepto todos los response que no sean del login */
-            if (event instanceof HttpResponse && event.url.indexOf('login') < 0) {
+            if (event instanceof HttpResponse && (event.url.indexOf('login') < 0 &&  event.url.indexOf('register') < 0)) {
+                console.log();
                 let resp = event as HttpResponse<Response>;
                 const headers: HttpHeaders = resp.headers;
                 this.auth.refreshToken(headers);
